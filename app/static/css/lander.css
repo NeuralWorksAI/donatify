@@ -21,16 +21,17 @@ nav {
 }
 
 @media only screen and (min-width: 992px) {
-.jumbotron {
-  padding: 20vh;
-}}
+  .jumbotron {
+    padding: 20vh;
+  }
+}
 
 .jumbo-header {
   font-weight: 500;
 }
 
 .after-wave {
-  background-color: #ff5843;
+  background-color: #f450c6;
 }
 
 .after-wave p,

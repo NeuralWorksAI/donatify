@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="{{ url_for('index') }}"
-    ><img class="nav-logo" src="../static/img/Diversify..svg"
+    ><img class="nav-logo" src="../static/img/logo.svg"
   /></a>
   <button
     class="navbar-toggler"
@@ -20,7 +20,7 @@
         >Devpost</a
       >
       <a class="nav-item nav-link text-center" href="{{ url_for('index') }}"
-        >About</a
+        >Extension</a
       >
       <a
         class="btn btn-outline-dark m-2 my-sm-0"
@@ -33,9 +33,7 @@
 </nav>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-2 jumbo-header">
-      A new, inclusive way to find new friends.
-    </h1>
+    <h1 class="display-2 jumbo-header">Donations made seamless.</h1>
     <a
       class="btn btn-dark btn-lg my-2 my-sm-0 lead"
       href="{{ url_for('signup') }}"
@@ -46,7 +44,7 @@
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
   <path
-    fill="#ff5843"
+    fill="#F450C6"
     fill-opacity="1"
     d="M0,96L48,122.7C96,149,192,203,288,234.7C384,267,480,277,576,240C672,203,768,117,864,122.7C960,128,1056,224,1152,245.3C1248,267,1344,213,1392,186.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
   ></path>
@@ -54,14 +52,12 @@
 <div class="container-fluid after-wave py-5">
   <div class="row gy-5 align-items-center">
     <div class="col-sm-6">
-      <div
-        class="col-group p-5"
-        data-aos="fade-up"
-      >
-        <h2>Same Interests, Different Stories</h2>
+      <div class="col-group p-5" data-aos="fade-up">
+        <h2>Donate Without Thinking</h2>
         <p>
-          Diversify uses a special ranking algorithm to match you with people
-          you share similar interests to you, from all around the world.
+          Each time you purchase an item, donatify will automatically round up
+          to the nearest dollar and donate the difference to a charity of your
+          choice.
         </p>
       </div>
     </div>
@@ -76,15 +72,11 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <div
-        class="col-group p-5"
-        data-aos="fade-up"
-      >
-        <h2>A platform for everyone</h2>
+      <div class="col-group p-5" data-aos="fade-up">
+        <h2>60-Second Setup</h2>
         <p>
-          To promote accesibility in our platform, Diversify features custom
-          voice recordings from users and text voicovers by the creators, simply
-          double click to hear them!
+          Donatify features a simple, intuitive setup that allows you to set up
+          in under 60 seconds. Simply download the web extension to get started!
         </p>
       </div>
     </div>
@@ -100,7 +92,7 @@
         <a href="{{url_for('signup')}}">Sign Up</a>
       </li>
     </ul>
-    <p class="copyright">A NeuralWorks project</p>
+    <p class="copyright">A Kent Hack Enough project</p>
   </footer>
 </div>
 {% endblock %}

@@ -12,8 +12,11 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 load_dotenv()
 
-myclient = MongoClient(getenv("MONGO_URI"))
-mydb = myclient[getenv("MONGO_COLLECTION")]
+try:
+    myclient = MongoClient(getenv("MONGO_URI"))
+    mydb = myclient[getenv("MONGO_COLLECTION")]
+except:
+    print("Error: Unable to connect to database")
 
 def assignSession(username):
     session["username"] = username
