@@ -5,7 +5,7 @@ file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 
 from app import app
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, EventForm
 from flask import render_template, session, redirect, url_for, flash
 from os import getenv
 from pymongo import MongoClient
@@ -61,4 +61,16 @@ def signup():
 def dashboard():
     if not 'username' in session:
         return redirect(url_for('signin'))
-    return render_template("dashboard.html", session=session)
+    return render_template("dashboard.html", session=session)#
+
+@app.route("/events/create", methods=['GET', 'POST'])
+def createEvent():
+    if not 'username' in session:
+        return redirect(url_for('signin'))
+    form=EventForm()
+    if form.validate_on_submit():
+        eventName = form.eventName.data
+        goal = form.goal.data
+        print(eventName, goal)
+        return redirect(url_for("dashboard"))
+    return render_template("createEvent.html", session=session, form=form)
