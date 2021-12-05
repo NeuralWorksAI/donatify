@@ -18,6 +18,13 @@
       {% endfor %}
     </div>
     <br />
+    <div>
+      {{ form.imageURL(size=300, class_="form-control", placeholder="Image URL"
+      ) }} {% for error in form.imageURL.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <br />
     <p>{{ form.submit(class="btn btn-lg btn-dark btn-block m-2") }}</p>
   </form>
   {% with messages = get_flashed_messages() %} {% if messages %} {% for message

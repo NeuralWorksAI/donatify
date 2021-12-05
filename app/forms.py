@@ -18,4 +18,5 @@ class RegisterForm(FlaskForm):
 class EventForm(FlaskForm):
     eventName = StringField('Event Name', validators=[DataRequired()])
     goal = IntegerField('Goal ($)', validators=[DataRequired()])
+    imageURL = StringField('Image URL', validators=[DataRequired()])
     submit = SubmitField('Submit')

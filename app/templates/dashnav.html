@@ -29,26 +29,26 @@
     </li>
     <li class="nav-item" style="text-align: left">
       <a
+        href="{{url_for('events')}}"
+        class="{{ 'nav-link active' if active_page == 'events' else 'nav-link link-dark' }}"
+      >
+        <i class="fas fa-hand-holding-usd"></i>
+        Events
+      </a>
+    </li>
+    <li class="nav-item" style="text-align: left">
+      <a
         href="{{url_for('createEvent')}}"
         class="{{ 'nav-link active' if active_page == 'createEvent' else 'nav-link link-dark' }}"
       >
-        <i class="fas fa-hand-holding-usd"></i>
+        <i class="fas fa-plus-circle"></i>
         New Event
       </a>
     </li>
     <li class="nav-item" style="text-align: left">
       <a
         href="#"
-        class="{{ 'nav-link active' if active_page == 'stats' else 'nav-link link-dark' }}"
-      >
-        <i class="fas fa-tachometer-alt"></i>
-        My Stats
-      </a>
-    </li>
-    <li class="nav-item" style="text-align: left">
-      <a
-        href="#"
-        class="{{ 'nav-link active' if active_page == 'shop' else 'nav-link link-dark' }}"
+        class="{{ 'nav-link active' if active_page == 'settings' else 'nav-link link-dark' }}"
       >
         <i class="fas fa-cog"></i>
         Settings

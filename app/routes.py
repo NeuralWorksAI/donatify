@@ -15,6 +15,10 @@ load_dotenv()
 try:
     myclient = MongoClient(getenv("MONGO_URI"))
     mydb = myclient[getenv("MONGO_COLLECTION")]
+    print(mydb.collection_names())
+    events = mydb["events"]
+    users = mydb["users"]
+    print(events)
 except:
     print("Error: Unable to connect to database")
 
@@ -61,7 +65,7 @@ def signup():
 def dashboard():
     if not 'username' in session:
         return redirect(url_for('signin'))
-    return render_template("dashboard.html", session=session)#
+    return render_template("dashboard.html", session=session)
 
 @app.route("/events/create", methods=['GET', 'POST'])
 def createEvent():
@@ -71,6 +75,23 @@ def createEvent():
     if form.validate_on_submit():
         eventName = form.eventName.data
         goal = form.goal.data
+        imageURL = form.imageURL.data
+        mydb.events.insert_one({"eventName": eventName, "goal": goal, "imageURL": imageURL, "creator": session['username'], "currentRaised": 0})
         print(eventName, goal)
         return redirect(url_for("dashboard"))
     return render_template("createEvent.html", session=session, form=form)
+
+@app.route("/events")
+def events():
+    if not 'username' in session:
+        return redirect(url_for('signin'))
+    events = mydb.events.find()
+    print(events)
+    return render_template("events.html", session=session, events=events)
+
+@app.route("/events/<eventName>", methods=[ 'GET', 'POST'])
+def event(eventName):
+    if not 'username' in session:
+        return redirect(url_for('signin'))
+    event = mydb.events.find_one({"eventName": eventName})
+    return render_template("event.html", session=session, event=event)

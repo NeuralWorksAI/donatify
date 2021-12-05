@@ -1,0 +1,35 @@
+{% extends 'base.html' %}{% set active_page = "events" %}{% block content %}{%
+include 'dashnav.html' %}
+<div class="full-main-dashboard" data-aos="fade-up">
+  <h1>Event</h1>
+  <div
+    class="container"
+    style="float: left; text-align: left; width: 50%; padding: 10px"
+  >
+    <img
+      class="card-img-top"
+      src="{{event.imageURL}}"
+      alt="Card image cap"
+      style="
+        width: 400px;
+        height: 300px;
+        float: left;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      "
+    />
+    <h3 style="clear: both">Event Name: {{event.eventName}}</h3>
+    <h3>
+      Goal Progress:
+      <span style="color: green">${{event.currentRaised}}</span>/${{event.goal}}
+    </h3>
+    <br />
+  </div>
+  <div
+    class="container"
+    style="float: right; text-align: center; width: 50%; padding: 10px"
+  >
+    <h2>Donation History</h2>
+  </div>
+  {% endblock %}
+</div>
