@@ -2,21 +2,29 @@
 include 'dashnav.html' %}
 <div class="full-main-dashboard" data-aos="fade-up">
   <h1>Events</h1>
-  {% for event in events %}
-  <div class="col">
-    <div class="card m-5" style="width: 18rem">
-      <img class="card-img-top" src="{{event.imageURL}}" alt="Card image cap" />
-      <div class="card-body">
-        <h5 class="card-title">{{event.eventName}}</h5>
-        <p><b>Goal: ${{event.goal}}</b></p>
-        <a
-          href="{{url_for('event', eventName=event.eventName)}}"
-          class="btn btn-outline-dark"
-          >Details</a
-        >
+  <div class="row">
+    {% for event in events %}
+    <div class="col">
+      <div class="card m-5" style="width: 18rem;">
+        <img
+          class="card-img-top"
+          src="{{event.imageURL}}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{event.eventName}}</h5>
+          <p><b>Goal: ${{event.goal}}</b></p>
+          <a
+            href="{{url_for('event', eventName=event.eventName)}}"
+            class="btn btn-outline-dark"
+            >Details</a
+          >
+        </div>
       </div>
+      </div>
+      {% endfor %}
+    </div>
     </div>
   </div>
-  {% endfor %}
+  {% endblock %}
 </div>
-{% endblock %}

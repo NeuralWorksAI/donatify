@@ -1,7 +1,8 @@
 {% extends 'base.html' %}{% set active_page = "events" %}{% block content %}{%
 include 'dashnav.html' %}
 <div class="full-main-dashboard" data-aos="fade-up">
-  <h1>Event</h1>
+  <h1>{{event.eventName}}</h1>
+  <hr />
   <div
     class="container"
     style="float: left; text-align: left; width: 50%; padding: 10px"
@@ -23,6 +24,8 @@ include 'dashnav.html' %}
       Goal Progress:
       <span style="color: green">${{event.currentRaised}}</span>/${{event.goal}}
     </h3>
+    <h3>Recent Donator: Michael</h3>
+    <h3>Created By: {{event.creator}}</h3>
     <br />
   </div>
   <div
@@ -30,9 +33,17 @@ include 'dashnav.html' %}
     style="float: right; text-align: center; width: 50%; padding: 10px"
   >
     <h2>Donation History</h2>
-    <p>Michael: $20</p>
-    <p>Job: $20</p>
-    <p>Job: $20</p>
+    <br />
+    <h4>Michael: $20</h4>
+    <h4>Job: $20</h4>
+    <h4>Job: $20</h4>
+    <br />
+    <a
+      class="btn btn-dark btn-lg my-2 my-sm-0 lead"
+      href="{{ url_for('dashboard') }}"
+    >
+      Set as Active Donation
+    </a>
   </div>
   {% endblock %}
 </div>
