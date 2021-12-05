@@ -10,7 +10,16 @@ from flask import render_template, session, redirect, url_for, flash
 from os import getenv
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import requests
+import json
 load_dotenv()
+
+headers = {
+  'Content-Type': 'application/json',
+   'cache-control': "no-cache"
+
+}
+
 
 try:
     myclient = MongoClient(getenv("MONGO_URI"))
@@ -34,7 +43,11 @@ def signin():
     form=LoginForm()
     if form.validate_on_submit():
         user = mydb.users.find_one({'username': form.username.data})
-        if user and user['password'] == form.password.data:
+        json_body = {"action" : "login" ,
+"username" : form.username.data,
+"password" : form.password.data}
+        loginRequest = requests.post('https://us-central1-aiot-fit-xlab.cloudfunctions.net/donatify', headers=headers, data=json.dumps(json_body))
+        if loginRequest.status_code == 200:
             assignSession(user['username'])
             return redirect(url_for('dashboard'))
         else:
@@ -53,10 +66,14 @@ def signup():
         if password != confirmPassword:
             flash('Passwords do not match')
             return redirect(url_for('signup'))
-        if mydb.users.find_one({'username': username}):
-            flash('Username already taken')
-            return redirect(url_for('signup'))
-        mydb.users.insert_one({"username": username, "email": email, "password": password})
+        json_body = {"action" : "createuser" ,
+"name" : username,
+"password" : password,
+"address" : email
+}
+        createUser = requests.post('https://us-central1-aiot-fit-xlab.cloudfunctions.net/donatify', data = json.dumps(json_body), headers = headers)
+        print(createUser.text)
+        mydb.users.insert_one({"username": username, "password": password})
         assignSession(username)
         return redirect(url_for('dashboard'))
     return render_template("signup.html", form=form)
@@ -76,7 +93,7 @@ def createEvent():
         eventName = form.eventName.data
         goal = form.goal.data
         imageURL = form.imageURL.data
-        mydb.events.insert_one({"eventName": eventName, "goal": goal, "imageURL": imageURL, "creator": session['username'], "currentRaised": 0})
+        mydb.events.insert_one({"eventName": eventName, "goal": goal, "imageURL": imageURL, "userid": session['username'], "currentRaised": 0})
         print(eventName, goal)
         return redirect(url_for("dashboard"))
     return render_template("createEvent.html", session=session, form=form)
