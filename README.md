@@ -1,4 +1,4 @@
-## Donatify
+# Donatify
 
 ![Donatify](profile.png)
 
